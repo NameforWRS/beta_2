@@ -113,7 +113,7 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     xvals = asInteger(xvals2);
     wt = REAL(wt2);
     treatment = REAL(treatment2);
-    IV = REAL(IV2); /* instrument*/
+   
     minsize = asInteger(minsize2);
     propensity = asReal(p2);
     split_alpha = asReal(split_alpha2);
