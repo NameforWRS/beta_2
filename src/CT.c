@@ -49,7 +49,7 @@ CTss(int n, double *y[], double *value, double *con_mean, double *tr_mean,
     double    y_sum = 0., z_sum = 0.;
     double yz_sum = 0.,  yy_sum = 0., zz_sum = 0.;
     double  beta_1 = 0., beta_0 = 0.;
-    double var_beta=0., beta_sqr_sum-0.; /* var */
+    double var_beta = 0., beta_sqr_sum = 0.; /* var */
    
     for (i = 0; i < n; i++) {
         temp1 += *y[i] * wt[i] * treatment[i];
@@ -121,7 +121,7 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
     double left_yz_sum = 0.,  left_yy_sum = 0., left_zz_sum = 0.;
     double  beta_1 = 0., beta_0 = 0.;
     
-     double   beta_sqr_sum,  var_beta; /* beta*/
+     double   beta_sqr_sum = 0.,  var_beta = 0.; /* beta*/
         
         
     for (i = 0; i < n; i++) {
