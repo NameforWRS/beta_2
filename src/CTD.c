@@ -31,7 +31,6 @@ CTDinit(int n, double *y[], int maxcat, char **error,
 		int *size, int who, double *wt, double *treatment, 
 		int bucketnum, int bucketMax, double *train_to_est_ratio)
 {
-	
 	if (who == 1 && maxcat > 0) {
 		graycode_init0(maxcat);
 		countn = (int *) ALLOC(2 * maxcat, sizeof(int));
@@ -57,7 +56,6 @@ void
 CTDss(int n, double *y[], double *value, double *con_mean, double *tr_mean, double *risk, double *wt, double *treatment, 
 		double max_y, double alpha, double train_to_est_ratio)
 {
-	Rprintf("CTD.c\n");
 	int i;
 	double temp0 = 0., temp1 = 0., twt = 0.; /* sum of the weights */ 
 	double ttreat = 0.;
