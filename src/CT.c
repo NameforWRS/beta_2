@@ -44,19 +44,20 @@ CTss(int n, double *y[], double *value, double *con_mean, double *tr_mean,
     double ttreat = 0.;
     double effect;
     double tr_var, con_var;
-    double con_sqr_sum = 0., tr_sqr_sum = 0.;   double beta_sqr_sum.;
-    double xz_sum = 0., xy_sum = 0., x_sum = 0., y_sum = 0., z_sum = 0.;
-    double yz_sum = 0., xx_sum = 0., yy_sum = 0., zz_sum = 0.;
-    double alpha_1 = 0., alpha_0 = 0., beta_1 = 0., beta_0 = 0.;
-    double var_beta; /* var */
-    double numerator, denominator;
+    double con_sqr_sum = 0., tr_sqr_sum = 0.;   
+      
+    double    y_sum = 0., z_sum = 0.;
+    double yz_sum = 0.,  yy_sum = 0., zz_sum = 0.;
+    double  beta_1 = 0., beta_0 = 0.;
+    double var_beta=0., beta_sqr_sum-0.; /* var */
+   
     for (i = 0; i < n; i++) {
         temp1 += *y[i] * wt[i] * treatment[i];
         temp0 += *y[i] * wt[i] * (1 - treatment[i]);
         twt += wt[i];
         ttreat += wt[i] * treatment[i];
-        tr_sqr_sum += (*y[i]) * (*y[i]) * wt[i] * treatment[i];
-        con_sqr_sum += (*y[i]) * (*y[i]) * wt[i] * (1- treatment[i]);
+        /*tr_sqr_sum += (*y[i]) * (*y[i]) * wt[i] * treatment[i];
+        con_sqr_sum += (*y[i]) * (*y[i]) * wt[i] * (1- treatment[i]);*/
         
         y_sum += treatment[i];
         z_sum += *y[i];
@@ -114,12 +115,12 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
     right_sqr_sum = 0.;
     right_tr_sqr_sum = 0.;
     right_n = n;
-    double right_xz_sum = 0., right_xy_sum = 0., right_x_sum = 0., right_y_sum = 0., right_z_sum = 0.;
-    double left_xz_sum = 0., left_xy_sum = 0., left_x_sum = 0., left_y_sum = 0., left_z_sum = 0.;
-    double right_yz_sum = 0., right_xx_sum = 0., right_yy_sum = 0., right_zz_sum = 0.;
-    double left_yz_sum = 0., left_xx_sum = 0., left_yy_sum = 0., left_zz_sum = 0.;
-    double alpha_1 = 0., alpha_0 = 0., beta_1 = 0., beta_0 = 0.;
-    double numerator, denominator;
+    double right_xy_sum = 0.,  right_y_sum = 0., right_z_sum = 0.;
+    double  left_y_sum = 0., left_z_sum = 0.;
+    double right_yz_sum = 0.,  right_yy_sum = 0., right_zz_sum = 0.;
+    double left_yz_sum = 0.,  left_yy_sum = 0., left_zz_sum = 0.;
+    double  beta_1 = 0., beta_0 = 0.;
+    
      double   beta_sqr_sum,  var_beta; /* beta*/
         
         
