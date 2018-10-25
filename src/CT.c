@@ -48,6 +48,8 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
     double var_beta = 0., beta_sqr_sum = 0.; /* var */
     double  y_sum = 0., z_sum = 0.;
     double yz_sum = 0.,  yy_sum = 0., zz_sum = 0.;
+    double  beta_1 = 0., beta_0 = 0.;    
+        
         
     for (i = 0; i < n; i++) {
         temp1 += *y[i] * wt[i] * treatment[i];
@@ -82,7 +84,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
     *value = effect;
     //*risk = 4 * twt * max_y * max_y - alpha * twt * effect * effect + 
     //(1 - alpha) * (1 + train_to_est_ratio) * twt * (tr_var /ttreat  + con_var / (twt - ttreat));
-    *risk = 4 * twt * max_y * max_y - alpha * twt * effect * effect + (1 - alpha) * (1 + train_to_est_ratio) * twt * ( var_beta)
+    *risk = 4 * twt * max_y * max_y - alpha * twt * effect * effect + (1 - alpha) * (1 + train_to_est_ratio) * twt * ( var_beta);
         
  }
 
