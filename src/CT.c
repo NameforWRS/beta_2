@@ -46,7 +46,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
     double tr_var, con_var;
     double con_sqr_sum = 0., tr_sqr_sum = 0.;
     double var_beta = 0., beta_sqr_sum = 0.; /* var */
-    double  y_sum = 0., z_sum = 0.;
+    double  y_sum = 0., z_sum = 0. ;
     double yz_sum = 0.,  yy_sum = 0., zz_sum = 0.;
     double  beta_1 = 0.;
     double beta_0 = 0.;    
@@ -61,7 +61,9 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
         con_sqr_sum += (*y[i]) * (*y[i]) * wt[i] * (1- treatment[i]);
         
         y_sum += treatment[i];
+      
         z_sum += *y[i];
+            
         yz_sum += *y[i] * treatment[i];
        
         yy_sum += treatment[i] * treatment[i];
@@ -76,7 +78,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
    
      /* Y= beta_0 + beta_1 T_1+beta_2 T_2 */
     beta_1 = (n * yz_sum - z_sum * y_sum) / (n * yy_sum - y_sum * y_sum); 
-    beta_0 = (z_sum - beta_1 * y_sum) / n;
+    beta_0 = (z_sum - beta_1 * y_sum -beta_2 * k_sum) / n;
     effect = beta_1;
     beta_sqr_sum = beta_1 * beta_1 ;
     var_beta = beta_sqr_sum / n - beta_1 * beta_1 / (n * n);
