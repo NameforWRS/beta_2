@@ -36,8 +36,8 @@ CTinit(int n, double *y[], int maxcat, char **error,
 
 void
 CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean, 
-     double *risk, double *wt, double *treatment, double max_y,
-     double alpha, double train_to_est_ratio)
+     double *risk, double *wt, double *treatment, double *treatment2, double max_y,
+     double alpha, double alpha_0, double train_to_est_ratio)
 {
     int i;
     double temp0 = 0., temp1 = 0., twt = 0.; /* sum of the weights */ 
@@ -46,10 +46,13 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
     double tr_var, con_var;
     double con_sqr_sum = 0., tr_sqr_sum = 0.;
     double var_beta = 0., beta_sqr_sum = 0.; /* var */
-    double  y_sum = 0., z_sum = 0. ;
+    double  y_sum = 0., z_sum = 0.;
     double yz_sum = 0.,  yy_sum = 0., zz_sum = 0.;
-    double  beta_1 = 0.;
-    double beta_0 = 0.;    
+    
+    double k_sum =0. ; /* two beta*/
+    double kz_sum = 0.,  ky_sum = 0., kk_sum = 0.;
+    
+    double  beta_1 = 0., beta_0 = 0., beta_2=0.;    
         
         
     for (i = 0; i < n; i++) {
@@ -61,13 +64,16 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
         con_sqr_sum += (*y[i]) * (*y[i]) * wt[i] * (1- treatment[i]);
         
         y_sum += treatment[i];
-      
-        z_sum += *y[i];
-            
+        z_sum += *y[i];   
         yz_sum += *y[i] * treatment[i];
        
         yy_sum += treatment[i] * treatment[i];
         zz_sum += *y[i] * *y[i];
+        k_sum+= treatment2[i];
+        kk_sum += treatment2[i] * treatment2[i];
+        ky_sum+= treatment2[i] * treatment[i];
+        kz_sum+= *y[i] * treatment2[i];
+            
     }
 
    
@@ -79,7 +85,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
      /* Y= beta_0 + beta_1 T_1+beta_2 T_2 */
     beta_1 = (n * yz_sum - z_sum * y_sum) / (n * yy_sum - y_sum * y_sum); 
     beta_0 = (z_sum - beta_1 * y_sum -beta_2 * k_sum) / n;
-    effect = beta_1;
+    effect = alpha_0 * beta_1 +(1-alpha_0) * beta_2;
     beta_sqr_sum = beta_1 * beta_1 ;
     var_beta = beta_sqr_sum / n - beta_1 * beta_1 / (n * n);
     *tr_mean = temp1 / ttreat;
