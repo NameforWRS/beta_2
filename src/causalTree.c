@@ -57,7 +57,7 @@ SEXP
 causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP method2, 
            SEXP crossmeth2, SEXP crosshonest2, SEXP opt2,
            SEXP minsize2, SEXP p2, SEXP xvals2, SEXP xgrp2,
-        SEXP ymat2, SEXP xmat2, SEXP wt2, SEXP treatment2, SEXP treatment22, SEXP ny2, SEXP cost2, 
+        SEXP ymat2, SEXP xmat2, SEXP wt2, SEXP treatment2, SEXP treatments2, SEXP ny2, SEXP cost2, 
         SEXP xvar2, SEXP split_alpha2, SEXP cv_alpha2, SEXP NumHonest2, SEXP gamma2)
 {
   
@@ -85,7 +85,7 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
 
     double *wt;
     double *treatment;
-    double *treatment2;
+    double *treatments;
     int minsize;
     /* add propensity score: */
     double propensity;
@@ -114,7 +114,7 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     xvals = asInteger(xvals2);
     wt = REAL(wt2);
     treatment = REAL(treatment2);
-    treatment2 = REAL(treatment22);
+    treatments = REAL(treatments2);
            
     minsize = asInteger(minsize2);
     propensity = asReal(p2);
