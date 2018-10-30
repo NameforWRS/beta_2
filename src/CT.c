@@ -184,7 +184,7 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
               -(right_n * right_yz_sum * right_n * right_ky_sum-right_n * right_yz_sum * right_y_sum *right_k_sum - right_z_sum * right_y_sum * right_n * right_ky_sum + right_z_sum * right_y_sum * right_y_sum * right_k_sum)) 
             / ((right_n * right_yy_sum - right_y_sum * right_y_sum)*(right_n * right_kk_sum - right_k_sum * right_k_sum));
         
-    beta_0 = right_z_sum - beta_1 * right_y_sum -beta_2 * right_k_sum) / right_n;
+    beta_0 = (right_z_sum - beta_1 * right_y_sum -beta_2 * right_k_sum) / right_n;
         
     temp = beta_1 + beta_2;
     beta1_sqr_sum = beta_1 * beta_1;
@@ -285,7 +285,7 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
               -(left_n * left_yz_sum * left_n * left_ky_sum-left_n * left_yz_sum * left_y_sum *left_k_sum - left_z_sum * left_y_sum * left_n * left_ky_sum + left_z_sum * left_y_sum * left_y_sum * left_k_sum)) 
             / ((left_n * left_yy_sum - left_y_sum * left_y_sum)*(left_n * left_kk_sum - left_k_sum * left_k_sum));
         
-    beta_0 = left_z_sum - beta_1 * left_y_sum - beta_2 * left_k_sum) / left_n;
+    beta_0 = (left_z_sum - beta_1 * left_y_sum - beta_2 * left_k_sum) / left_n;
 
         
     left_temp = beta_1 + beta_2;
@@ -312,11 +312,11 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
               -(right_n * right_kz_sum * right_n * right_ky_sum-right_n * right_kz_sum * right_y_sum *right_k_sum - right_z_sum * right_k_sum * right_n * right_ky_sum + right_z_sum * right_k_sum * right_k_sum * right_y_sum)) 
             / ((right_n * right_yy_sum - right_y_sum * right_y_sum)*(right_n * right_kk_sum - right_k_sum * right_k_sum)); 
         
-    beta_2 = = ((right_n * right_kz_sum *right_n* right_kk_sum- right_n * right_kz_sum * right_y_sum * right_y_sum- right_z_sum * right_k_sum *right_n *right_yy_sum + right_z_sum * right_k_sum * right_y_sum * right_y_sum)
+    beta_2 =  ((right_n * right_kz_sum *right_n* right_kk_sum- right_n * right_kz_sum * right_y_sum * right_y_sum- right_z_sum * right_k_sum *right_n *right_yy_sum + right_z_sum * right_k_sum * right_y_sum * right_y_sum)
               -(right_n * right_yz_sum * right_n * right_ky_sum-right_n * right_yz_sum * right_y_sum *right_k_sum - right_z_sum * right_y_sum * right_n * right_ky_sum + right_z_sum * right_y_sum * right_y_sum * right_k_sum)) 
             / ((right_n * right_yy_sum - right_y_sum * right_y_sum)*(right_n * right_kk_sum - right_k_sum * right_k_sum));
         
-    beta_0 = right_z_sum - beta_1 * right_y_sum - beta_2 * right_k_sum) / right_n;
+    beta_0 = (right_z_sum - beta_1 * right_y_sum - beta_2 * right_k_sum) / right_n;
         
     right_temp = beta_1 + beta_2;
     beta1_sqr_sum = beta_1 * beta_1;
