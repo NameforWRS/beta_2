@@ -88,7 +88,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
             / ((n * yy_sum - y_sum * y_sum)*(n * kk_sum - k_sum * k_sum)); 
         
     beta_2 = ((n * kz_sum *n* kk_sum- n * kz_sum * y_sum * y_sum- z_sum * k_sum *n *yy_sum + z_sum * k_sum * y_sum * y_sum)
-              -(n * yz_sum * n * yk_sum-n * yz_sum * y_sum *k_sum - z_sum * y_sum * n * ky_sum + z_sum * y_sum * y_sum * k_sum)) 
+              -(n * yz_sum * n * ky_sum-n * yz_sum * y_sum *k_sum - z_sum * y_sum * n * ky_sum + z_sum * y_sum * y_sum * k_sum)) 
             / ((n * yy_sum - y_sum * y_sum)*(n * kk_sum - k_sum * k_sum)); 
         
     beta_0 = (z_sum - beta_1 * y_sum -beta_2 * k_sum) / n;
@@ -181,7 +181,7 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
             / ((right_n * right_yy_sum - right_y_sum * right_y_sum)*(right_n * right_kk_sum - right_k_sum * right_k_sum)); 
         
     beta_2 = = ((right_n * right_kz_sum *right_n* right_kk_sum- right_n * right_kz_sum * right_y_sum * right_y_sum- right_z_sum * right_k_sum *right_n *right_yy_sum + right_z_sum * right_k_sum * right_y_sum * right_y_sum)
-              -(right_n * right_yz_sum * right_n * right_yk_sum-right_n * right_yz_sum * right_y_sum *right_k_sum - right_z_sum * right_y_sum * right_n * right_ky_sum + right_z_sum * right_y_sum * right_y_sum * right_k_sum)) 
+              -(right_n * right_yz_sum * right_n * right_ky_sum-right_n * right_yz_sum * right_y_sum *right_k_sum - right_z_sum * right_y_sum * right_n * right_ky_sum + right_z_sum * right_y_sum * right_y_sum * right_k_sum)) 
             / ((right_n * right_yy_sum - right_y_sum * right_y_sum)*(right_n * right_kk_sum - right_k_sum * right_k_sum));
         
     beta_0 = right_z_sum - right_beta_1 * right_y_sum -right_beta_2 * right_k_sum) / right_n;
@@ -254,8 +254,8 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
               /* add treatment2 */  
              left_k_sum += treatment2[i];
              right_k_sum -= treatment2[i];
-             left_yk_sum += *y[i] * treatment2[i];
-             right_yk_sum -= *y[i] * treatment2[i];
+             left_ky_sum += *y[i] * treatment2[i];
+             right_ky_sum -= *y[i] * treatment2[i];
            
             left_kk_sum += treatment2[i] * treatment2[i];
             right_kk_sum -= treatment2[i] * treatment2[i];
@@ -282,7 +282,7 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
             / ((left_n * left_yy_sum - left_y_sum * left_y_sum)*(left_n * left_kk_sum - left_k_sum * left_k_sum)); 
         
     beta_2 = = ((left_n * left_kz_sum *left_n* left_kk_sum- left_n * left_kz_sum * left_y_sum * left_y_sum- left_z_sum * left_k_sum *left_n *left_yy_sum + left_z_sum * left_k_sum * left_y_sum * left_y_sum)
-              -(left_n * left_yz_sum * left_n * left_yk_sum-left_n * left_yz_sum * left_y_sum *left_k_sum - left_z_sum * left_y_sum * left_n * left_ky_sum + left_z_sum * left_y_sum * left_y_sum * left_k_sum)) 
+              -(left_n * left_yz_sum * left_n * left_ky_sum-left_n * left_yz_sum * left_y_sum *left_k_sum - left_z_sum * left_y_sum * left_n * left_ky_sum + left_z_sum * left_y_sum * left_y_sum * left_k_sum)) 
             / ((left_n * left_yy_sum - left_y_sum * left_y_sum)*(left_n * left_kk_sum - left_k_sum * left_k_sum));
         
     beta_0 = left_z_sum - left_beta_1 * left_y_sum -left_beta_2 * left_k_sum) / left_n;
@@ -313,7 +313,7 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
             / ((right_n * right_yy_sum - right_y_sum * right_y_sum)*(right_n * right_kk_sum - right_k_sum * right_k_sum)); 
         
     beta_2 = = ((right_n * right_kz_sum *right_n* right_kk_sum- right_n * right_kz_sum * right_y_sum * right_y_sum- right_z_sum * right_k_sum *right_n *right_yy_sum + right_z_sum * right_k_sum * right_y_sum * right_y_sum)
-              -(right_n * right_yz_sum * right_n * right_yk_sum-right_n * right_yz_sum * right_y_sum *right_k_sum - right_z_sum * right_y_sum * right_n * right_ky_sum + right_z_sum * right_y_sum * right_y_sum * right_k_sum)) 
+              -(right_n * right_yz_sum * right_n * right_ky_sum-right_n * right_yz_sum * right_y_sum *right_k_sum - right_z_sum * right_y_sum * right_n * right_ky_sum + right_z_sum * right_y_sum * right_y_sum * right_k_sum)) 
             / ((right_n * right_yy_sum - right_y_sum * right_y_sum)*(right_n * right_kk_sum - right_k_sum * right_k_sum));
         
     beta_0 = right_z_sum - right_beta_1 * right_y_sum -right_beta_2 * right_k_sum) / right_n;
