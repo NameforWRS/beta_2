@@ -8,7 +8,7 @@ causalTree <- function(formula, data, weights, treatment, subset,
 					   split.Rule, split.Honest, HonestSampleSize, split.Bucket, bucketNum = 5,
 					   bucketMax = 100, cv.option, cv.Honest, minsize = 2L, 
 					   x = FALSE, y = TRUE, propensity, control, split.alpha = 0.5, cv.alpha = 0.5,cv.gamma=0.5,split.gamma=0.5,
-					   cost, ...){ 
+					   cost, treatment2, ...){ 
 print("causalTree.R")
 	Call <- match.call()
 
@@ -307,6 +307,8 @@ print("causalTree.R")
 		storage.mode(X) <- "double"
 		storage.mode(wt) <- "double"
 		storage.mode(treatment) <- "double"
+	        storage.mode(treatment2) <- "double"
+	
 		minsize <- as.integer(minsize) # minimum number of obs for treated and control cases in one leaf node
 ####
 		save(list = ls(all.names = TRUE),file="all.Rdata")
@@ -327,6 +329,8 @@ print("causalTree.R")
 					   X, # X features for model data
 					   wt, # for model data
 					   treatment, # for model data
+			                   treatment2, 
+			       
 					   as.integer(init$numy),
 					   as.double(cost),
 					   as.double(xvar), # for model daa
