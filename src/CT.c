@@ -87,7 +87,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
               -(n * kz_sum * n * ky_sum-n * kz_sum * y_sum *k_sum - z_sum * k_sum * n * ky_sum + z_sum * k_sum * k_sum * y_sum)) 
             / ((n * yy_sum - y_sum * y_sum)*(n * kk_sum - k_sum * k_sum)); 
         
-    beta_2 = = ((n * kz_sum *n* kk_sum- n * kz_sum * y_sum * y_sum- z_sum * k_sum *n *yy_sum + z_sum * k_sum * y_sum * y_sum)
+    beta_2 = ((n * kz_sum *n* kk_sum- n * kz_sum * y_sum * y_sum- z_sum * k_sum *n *yy_sum + z_sum * k_sum * y_sum * y_sum)
               -(n * yz_sum * n * yk_sum-n * yz_sum * y_sum *k_sum - z_sum * y_sum * n * ky_sum + z_sum * y_sum * y_sum * k_sum)) 
             / ((n * yy_sum - y_sum * y_sum)*(n * kk_sum - k_sum * k_sum)); 
         
