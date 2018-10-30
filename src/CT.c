@@ -45,7 +45,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
     double effect;
     double tr_var, con_var;
     double con_sqr_sum = 0., tr_sqr_sum = 0.;
-    double var_beta = 0., beta_sqr_sum = 0.; /* var */
+    double var_beta = 0., beta1_sqr_sum = 0.; /* var */
     double  y_sum = 0., z_sum = 0.;
     double yz_sum = 0.,  yy_sum = 0., zz_sum = 0.;
     
@@ -53,7 +53,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
     double kz_sum = 0.,  ky_sum = 0., kk_sum = 0.;
     
     double  beta_1 = 0., beta_0 = 0., beta_2=0.;    
-        
+    double beta2_sqr_sum = 0.; /* var */  
         
     for (i = 0; i < n; i++) {
         temp1 += *y[i] * wt[i] * treatment[i];
