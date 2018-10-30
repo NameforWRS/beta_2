@@ -48,11 +48,13 @@ EXTERN struct {
     double *xtemp;
     double *wt;
     double *treatment;
+    double *treatment2;
     
     double **ytemp;
     double *wtemp;              /* temp vector of weights */
     double *trtemp;             /* temp vector of treatment status */
-   
+    double *tr2temp;
+    
     double *lwt;
     double *ltr;
     double *rwt;                /*scratch double vectors, of length ncat */
