@@ -57,7 +57,7 @@ SEXP
 causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP method2, 
            SEXP crossmeth2, SEXP crosshonest2, SEXP opt2,
            SEXP minsize2, SEXP p2, SEXP xvals2, SEXP xgrp2,
-        SEXP ymat2, SEXP xmat2, SEXP wt2, SEXP treatment2, SEXP ny2, SEXP cost2, 
+        SEXP ymat2, SEXP xmat2, SEXP wt2, SEXP treatment2, SEXP treatment22, SEXP ny2, SEXP cost2, 
         SEXP xvar2, SEXP split_alpha2, SEXP cv_alpha2, SEXP NumHonest2, SEXP gamma2)
 {
   
@@ -85,6 +85,7 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
 
     double *wt;
     double *treatment;
+    double *treatment2;
     int minsize;
     /* add propensity score: */
     double propensity;
@@ -113,7 +114,8 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     xvals = asInteger(xvals2);
     wt = REAL(wt2);
     treatment = REAL(treatment2);
-   
+    treatment2 = REAL(treatment22);
+           
     minsize = asInteger(minsize2);
     propensity = asReal(p2);
     split_alpha = asReal(split_alpha2);
@@ -178,6 +180,8 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     ct.numcat = INTEGER(ncat2);
     ct.wt = wt;
     ct.treatment = treatment;
+    ct.treatment2 = treatment2;
+           
            
     ct.iscale = 0.0;
     ct.vcost = REAL(cost2);
@@ -216,7 +220,8 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     ct.ytemp = (double **) ALLOC(n, sizeof(double *));
     ct.wtemp = (double *) ALLOC(n, sizeof(double));
     ct.trtemp = (double *) ALLOC(n, sizeof(double));
-    
+    ct.tr2temp = (double *) ALLOC(n, sizeof(double));
+           
     /*
      * create a matrix of sort indices, one for each continuous variable
      *   This sort is "once and for all".
@@ -311,7 +316,7 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     } else if (split_Rule == 2) {  
         // ct:
         (*ct_eval) (n, ct.ydata, tree->response_est, tree->controlMean, tree->treatMean, 
-         &(tree->risk), wt, treatment,  ct.max_y, split_alpha, train_to_est_ratio);
+         &(tree->risk), wt, treatment, treatment2, ct.max_y, split_alpha, train_to_est_ratio);
     } else if (split_Rule == 3) {
         //fit
         (*ct_eval) (n, ct.ydata, tree->response_est, tree->controlMean, tree->treatMean, 
