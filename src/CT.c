@@ -37,7 +37,7 @@ CTinit(int n, double *y[], int maxcat, char **error,
 void
 CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean, 
      double *risk, double *wt, double *treatment, double *treatment2, double max_y,
-     double alpha, double alpha_0, double train_to_est_ratio)
+     double alpha, double train_to_est_ratio)
 {
     int i;
     double temp0 = 0., temp1 = 0., twt = 0.; /* sum of the weights */ 
@@ -83,11 +83,21 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
    
    
      /* Y= beta_0 + beta_1 T_1+beta_2 T_2 */
-    beta_1 = (n * yz_sum - z_sum * y_sum) / (n * yy_sum - y_sum * y_sum); 
+    beta_1 = ((n * yz_sum *n* yy_sum- n * yz_sum * y_sum * y_sum-y_sum * z_sum *n *kk_sum + y_sum * z_sum * k_sum * k_sum)
+              -(n * kz_sum * n * ky_sum-n * kz_sum * y_sum *k_sum - z_sum * k_sum * n * ky_sum + z_sum * k_sum * k_sum * y_sum)) 
+            / ((n * yy_sum - y_sum * y_sum)*(n * kk_sum - k_sum * k_sum)); 
+        
+    beta_2 = = ((n * kz_sum *n* kk_sum- n * kz_sum * y_sum * y_sum- z_sum * k_sum *n *yy_sum + z_sum * k_sum * y_sum * y_sum)
+              -(n * yz_sum * n * yk_sum-n * yz_sum * y_sum *k_sum - z_sum * y_sum * n * ky_sum + z_sum * y_sum * y_sum * k_sum)) 
+            / ((n * yy_sum - y_sum * y_sum)*(n * kk_sum - k_sum * k_sum)); 
+        
     beta_0 = (z_sum - beta_1 * y_sum -beta_2 * k_sum) / n;
-    effect = alpha_0 * beta_1 +(1-alpha_0) * beta_2;
-    beta_sqr_sum = beta_1 * beta_1 ;
-    var_beta = beta_sqr_sum / n - beta_1 * beta_1 / (n * n);
+        
+    effect = beta_1 + beta_2;
+    beta1_sqr_sum = beta_1 * beta_1;
+    beta2_sqr_sum = beta_2 * beta_2;
+    var_beta = beta1_sqr_sum / n - beta_1 * beta_1 / (n * n) + beta2_sqr_sum / n - beta_2 * beta_2 / (n * n);
+    
     *tr_mean = temp1 / ttreat;
     *con_mean = temp0 / (twt - ttreat);
     *value = effect;
@@ -136,8 +146,14 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
     double left_yz_sum = 0.,  left_yy_sum = 0., left_zz_sum = 0.;
     double  beta_1 = 0., beta_0 = 0.;
     
-    double   beta_sqr_sum = 0.,  var_beta = 0.; /* beta*/
-        
+    double   beta1_sqr_sum = 0.,  var_beta = 0.; /* beta*/
+    double   beta2_sqr_sum = 0.; /* beta*/ 
+    double left_k_sum =0. ; /* two beta*/
+    double left_kz_sum = 0.,  left_ky_sum = 0., left_kk_sum = 0.;
+    double right_k_sum =0. ; /* two beta*/
+    double right_kz_sum = 0.,  right_ky_sum = 0., right_kk_sum = 0.;
+    
+    double  beta_2=0.;     
         
     for (i = 0; i < n; i++) {
         right_wt += wt[i];
