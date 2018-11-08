@@ -335,7 +335,7 @@ print("causalTree.R")
 					   X, # X features for model data
 					   wt, # for model data
 					   treatment, # for model data
-			                   treatments, 
+			                   #treatments, 
 					   as.integer(init$numy),
 					   as.double(cost),
 					   as.double(xvar), # for model daa
