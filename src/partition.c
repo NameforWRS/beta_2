@@ -59,7 +59,7 @@ partition(int nodenum, pNode splitnode, double *sumrisk, int n1, int n2,
 		      j = -(1 + j);   /* if missing, value = -(1+ true index) */
 	      ct.wtemp[k] = ct.wt[j];
           ct.trtemp[k] = ct.treatment[j];
-          ct.tr2temp[k] = ct.treatment2[j];
+          ct.trstemp[k] = ct.treatments[j];
 	      ct.ytemp[k] = ct.ydata[j];
 	      twt += ct.wt[j];
           ttr += ct.treatment[j] * ct.wt[j];
