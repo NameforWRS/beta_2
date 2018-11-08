@@ -9,7 +9,7 @@ causalTree <- function(formula, data, weights, treatment, treatments, subset,
 					   bucketMax = 100, cv.option, cv.Honest, minsize = 2L, 
 					   x = FALSE, y = TRUE, propensity, control, split.alpha = 0.5, cv.alpha = 0.5,cv.gamma=0.5,split.gamma=0.5,
 					   cost,  ...){ 
-print("causalTree.R")
+
 	Call <- match.call()
 
 	indx <- match(c("formula", "data", "weights", "subset"),
@@ -23,8 +23,8 @@ print("causalTree.R")
 	m <- eval.parent(temp)
 	treatment <- treatment[(rownames(m))]
 	#Add treantment
-	
-	
+	names(treatments) <- rownames(data)
+	treatments <- treatments[(rownames(m))]
 	
 	
 	Terms <- attr(m, "terms")
