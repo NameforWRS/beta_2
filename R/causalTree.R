@@ -3,12 +3,12 @@
 #
 # 
 
-causalTree <- function(formula, data, weights, treatment, subset, 
+causalTree <- function(formula, data, weights, treatment, treatments, subset, 
 					   na.action = na.causalTree, 
 					   split.Rule, split.Honest, HonestSampleSize, split.Bucket, bucketNum = 5,
 					   bucketMax = 100, cv.option, cv.Honest, minsize = 2L, 
 					   x = FALSE, y = TRUE, propensity, control, split.alpha = 0.5, cv.alpha = 0.5,cv.gamma=0.5,split.gamma=0.5,
-					   cost, treatments, ...){ 
+					   cost,  ...){ 
 print("causalTree.R")
 	Call <- match.call()
 
