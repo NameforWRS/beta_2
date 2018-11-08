@@ -307,7 +307,7 @@ print("causalTree.R")
 		storage.mode(X) <- "double"
 		storage.mode(wt) <- "double"
 		storage.mode(treatment) <- "double"
-	        storage.mode(treatment2) <- "double"
+	        storage.mode(treatments) <- "double"
 	
 		minsize <- as.integer(minsize) # minimum number of obs for treated and control cases in one leaf node
 ####
@@ -329,7 +329,7 @@ print("causalTree.R")
 					   X, # X features for model data
 					   wt, # for model data
 					   treatment, # for model data
-			                   treatment2, 
+			                   treatments, 
 			       
 					   as.integer(init$numy),
 					   as.double(cost),
