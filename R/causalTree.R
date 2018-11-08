@@ -25,7 +25,7 @@ print("causalTree.R")
 	#Add treantment
 	names(treatments) <- rownames(data)
 	m <- eval.parent(temp)
-	treatments <- treatment[(rownames(m))]
+	treatments <- treatments[(rownames(m))]
 	
 	
 	
