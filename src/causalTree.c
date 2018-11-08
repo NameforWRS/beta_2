@@ -316,7 +316,7 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     } else if (split_Rule == 2) {  
         // ct:
         (*ct_eval) (n, ct.ydata, tree->response_est, tree->controlMean, tree->treatMean, 
-         &(tree->risk), wt, treatment, treatment2, ct.max_y, split_alpha, train_to_est_ratio);
+         &(tree->risk), wt, treatment, treatments, ct.max_y, split_alpha, train_to_est_ratio);
     } else if (split_Rule == 3) {
         //fit
         (*ct_eval) (n, ct.ydata, tree->response_est, tree->controlMean, tree->treatMean, 
