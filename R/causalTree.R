@@ -24,7 +24,7 @@ causalTree <- function(formula, data, weights, treatment, treatments, subset,
 	treatment <- treatment[(rownames(m))]
 	#Add treantment
 	#names(treatments) <- rownames(data)
-	treatments <- treatments[(rownames(m))]
+	#treatments <- treatments[(rownames(m))]
 	
 	
 	Terms <- attr(m, "terms")
