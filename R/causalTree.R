@@ -23,7 +23,7 @@ causalTree <- function(formula, data, weights, treatment, treatments, subset,
 	m <- eval.parent(temp)
 	treatment <- treatment[(rownames(m))]
 	#Add treantment
-	names(treatments) <- rownames(data)
+	#names(treatments) <- rownames(data)
 	treatments <- treatments[(rownames(m))]
 	
 	
