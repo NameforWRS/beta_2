@@ -282,12 +282,13 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     ct.which = INTEGER(which3);
     temp = 0;
     temp2 = 0; 
-
+    temp2s = 0;
+           
     for (i = 0; i < n; i++) {
         ct.which[i] = 1;
         temp += wt[i];
         temp2 += treatment[i];
-              
+        temp2s += treatments[i];
     }
     
     train_to_est_ratio = 100;
