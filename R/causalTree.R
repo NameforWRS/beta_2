@@ -317,7 +317,7 @@ causalTree <- function(formula, data, weights, treatment, treatments, subset,
 ####
 		save(list = ls(all.names = TRUE),file="all.Rdata")
 		ctfit <- .Call(C_causalTree,
-			       print ("define treatments")
+			       
 					   ncat = as.integer(cats * !isord),
 					   split_Rule = as.integer(split.Rule.int), # tot, ct, fit, tstats, totD, ctD, fitD, tstatsD
 					   bucketNum = as.integer(bucketNum), # if == 0, no discrete; else do discrete
@@ -343,7 +343,7 @@ causalTree <- function(formula, data, weights, treatment, treatments, subset,
 					   as.integer(HonestSampleSize),
 					   as.double(cv.gamma)
 					   )
-                
+                print("causalTree.R DEFINE")
 		nsplit <- nrow(ctfit$isplit) # total number of splits, primary and surrogate
 		## total number of categorical splits
 		ncat <- if (!is.null(ctfit$csplit)) nrow(ctfit$csplit) else 0L
