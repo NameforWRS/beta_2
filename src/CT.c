@@ -36,7 +36,7 @@ CTinit(int n, double *y[], int maxcat, char **error,
 
 void
 CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean, 
-     double *risk, double *wt, double *treatment, double *treatment2, double max_y,
+     double *risk, double *wt, double *treatment, double *treatments, double max_y,
      double alpha, double train_to_est_ratio)
 {
     int i;
@@ -69,10 +69,10 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
        
         yy_sum += treatment[i] * treatment[i];
         zz_sum += *y[i] * *y[i];
-        k_sum+= treatment2[i];
-        kk_sum += treatment2[i] * treatment2[i];
-        ky_sum+= treatment2[i] * treatment[i];
-        kz_sum+= *y[i] * treatment2[i];
+        k_sum+= treatments[i];
+        kk_sum += treatments[i] * treatments[i];
+        ky_sum+= treatments[i] * treatment[i];
+        kz_sum+= *y[i] * treatments[i];
             
     }
 
@@ -112,7 +112,7 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
 
 
 void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, double *split, 
-        int *csplit, double myrisk, double *wt, double *treatment, double *treatment2,  int minsize, double alpha,
+        int *csplit, double myrisk, double *wt, double *treatment, double *treatments,  int minsize, double alpha,
         double train_to_est_ratio)
 {
     int i, j;
@@ -170,10 +170,10 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
        
         right_yy_sum += treatment[i] * treatment[i];
         right_zz_sum += *y[i] * *y[i];
-        right_k_sum+= treatment2[i];
-        right_kk_sum += treatment2[i] * treatment2[i];
-        right_ky_sum+= treatment2[i] * treatment[i];
-        right_kz_sum+= *y[i] * treatment2[i];
+        right_k_sum+= treatments[i];
+        right_kk_sum += treatments[i] * treatments[i];
+        right_ky_sum+= treatments[i] * treatment[i];
+        right_kz_sum+= *y[i] * treatments[i];
     }
 
     beta_1 = ((right_n * right_yz_sum *right_n* right_yy_sum- right_n * right_yz_sum * right_y_sum * right_y_sum-right_y_sum * right_z_sum *right_n *right_kk_sum + right_y_sum * right_z_sum * right_k_sum * right_k_sum)
@@ -251,16 +251,16 @@ void CT(int n, double *y[], double *x, int nclass, int edge, double *improve, do
             right_yy_sum -= treatment[i] * treatment[i];
             left_zz_sum += *y[i] * *y[i];
             right_zz_sum -= *y[i] * *y[i];
-              /* add treatment2 */  
-             left_k_sum += treatment2[i];
-             right_k_sum -= treatment2[i];
-             left_ky_sum += *y[i] * treatment2[i];
-             right_ky_sum -= *y[i] * treatment2[i];
+              /* add treatments */  
+             left_k_sum += treatments[i];
+             right_k_sum -= treatments[i];
+             left_ky_sum += *y[i] * treatments[i];
+             right_ky_sum -= *y[i] * treatments[i];
            
-            left_kk_sum += treatment2[i] * treatment2[i];
-            right_kk_sum -= treatment2[i] * treatment2[i];
-            left_kz_sum += treatment2[i] * *y[i];
-            right_kz_sum -= treatment2[i] * *y[i]; 
+            left_kk_sum += treatments[i] * treatments[i];
+            right_kk_sum -= treatments[i] * treatments[i];
+            left_kz_sum += treatments[i] * *y[i];
+            right_kz_sum -= treatments[i] * *y[i]; 
                 
             
            /* if (x[i + 1] != x[i] && left_n >= edge &&
@@ -536,4 +536,4 @@ double
         ystar = y[0] * (treatment - propensity) / (propensity * (1 - propensity));
         temp = ystar - *yhat;
         return temp * temp * wt;
-    }
+    } 
