@@ -220,7 +220,7 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     ct.ytemp = (double **) ALLOC(n, sizeof(double *));
     ct.wtemp = (double *) ALLOC(n, sizeof(double));
     ct.trtemp = (double *) ALLOC(n, sizeof(double));
-    ct.tr2temp = (double *) ALLOC(n, sizeof(double));
+    ct.trstemp = (double *) ALLOC(n, sizeof(double));
            
     /*
      * create a matrix of sort indices, one for each continuous variable
