@@ -31,9 +31,9 @@ extern int CTinit(int n, double *y[], int maxcat, char **error,
 
 /* beta*/
 extern void CTss(int n, double *y[], double *value, double *tr_mean, double *con_mean, double *risk, 
-                 double *wt, double *treatment, double max_y, double alpha, double train_to_est_ratio);
+                 double *wt, double *treatment, double *treatments, double max_y, double alpha, double train_to_est_ratio);
 extern void CT(int n, double *y[], double *x, int nclass,int edge, double *improve, double *split, 
-               int *csplit, double myrisk, double *wt, double *treatment, int minsize, double alpha,
+               int *csplit, double myrisk, double *wt, double *treatment, double *treatments, int minsize, double alpha,
                double train_to_est_ratio);
 
 
