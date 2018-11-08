@@ -22,6 +22,12 @@ print("causalTree.R")
 	names(treatment) <- rownames(data)
 	m <- eval.parent(temp)
 	treatment <- treatment[(rownames(m))]
+	#Add treantment
+	names(treatments) <- rownames(data)
+	m <- eval.parent(temp)
+	treatments <- treatment[(rownames(m))]
+	
+	
 	
 	Terms <- attr(m, "terms")
 	if (any(attr(Terms, "order") > 1L))
