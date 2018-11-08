@@ -30,7 +30,7 @@ bsplit(pNode me, int n1, int n2, int minsize, int split_Rule, double alpha, int 
     double **ytemp;
     double *wtemp;
     double *trtemp;
-    double *tr2temp;
+    double *trstemp;
 
  
     xtemp = ct.xtemp;
