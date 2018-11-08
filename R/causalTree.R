@@ -8,7 +8,7 @@ causalTree <- function(formula, data, weights, treatment, treatments, subset,
 					   split.Rule, split.Honest, HonestSampleSize, split.Bucket, bucketNum = 5,
 					   bucketMax = 100, cv.option, cv.Honest, minsize = 2L, 
 					   x = FALSE, y = TRUE, propensity, control, split.alpha = 0.5, cv.alpha = 0.5,cv.gamma=0.5,split.gamma=0.5,
-					   cost,  ...){ 
+					   cost,  ...){ print("causaltree start")
 
 	Call <- match.call()
 
@@ -21,7 +21,7 @@ causalTree <- function(formula, data, weights, treatment, treatments, subset,
 	temp[[1L]] <- quote(stats::model.frame) 
 	names(treatment) <- rownames(data)
 	m <- eval.parent(temp)
-	treatment <- treatment[(rownames(m))]
+	#treatment <- treatment[(rownames(m))]
 	#Add treantment
 	#names(treatments) <- rownames(data)
 	#treatments <- treatments[(rownames(m))]
