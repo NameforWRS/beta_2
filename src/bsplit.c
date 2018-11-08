@@ -37,7 +37,7 @@ bsplit(pNode me, int n1, int n2, int minsize, int split_Rule, double alpha, int 
     ytemp = ct.ytemp;
     wtemp = ct.wtemp;
     trtemp = ct.trtemp;
-    tr2temp = ct.tr2temp;
+    trstemp = ct.trstemp;
     /*
      * test out the variables 1 at at time
      */
@@ -58,7 +58,7 @@ bsplit(pNode me, int n1, int n2, int minsize, int split_Rule, double alpha, int 
                 ytemp[k] = ct.ydata[kk];
                 wtemp[k] = ct.wt[kk];
                 trtemp[k] = ct.treatment[kk];
-                tr2temp[k] = ct.treatment2[kk];   
+                trstemp[k] = ct.treatments[kk];   
                 k++;
             }
         }
