@@ -73,7 +73,7 @@ bsplit(pNode me, int n1, int n2, int minsize, int split_Rule, double alpha, int 
         } else if (split_Rule == 2) {
             //CT
             (*ct_choose) (k, ytemp, xtemp, nc, ct.min_node, &improve, 
-             &split, ct.csplit, me->risk, wtemp, trtemp, tr2temp, minsize, alpha, train_to_est_ratio);
+             &split, ct.csplit, me->risk, wtemp, trtemp, trstemp, minsize, alpha, train_to_est_ratio);
         } else if (split_Rule == 3) {
             //fit
             (*ct_choose) (k, ytemp, xtemp, nc, ct.min_node, &improve, 
