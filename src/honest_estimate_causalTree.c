@@ -10,8 +10,9 @@
 honest_estimate_causalTree0(const int *dimx, int nnode, int nsplit, const int *dimc, 
                             const int *nnum, const int *nodes2, const int *vnum,
                             const double *split2, const int *csplit2, const int *usesur,
-                            int *n1, double *wt1, double *dev1, double *yval1, const double *xdata2, 
-                            const double *wt2, const double *treatment2, const double *y2,
+                            int *n1, double *wt1, double *dev1, double *yval1, double *yvals1,
+                            const double *xdata2, 
+                            const double *wt2, const double *treatment2, const double *treatments2, const double *y2,
                             const int *xmiss2, int *where)
 {Rprintf("honest_estimate_causalTree0\n");
     int i, j;
@@ -33,7 +34,21 @@ honest_estimate_causalTree0(const int *dimx, int nnode, int nsplit, const int *d
     double *consqrsums = NULL;
     int nnodemax = -1;
     int *invertdx = NULL;
+ 
+    /*add two beta*/
+    double  *y_sum= NULL; 
+    double  *z_sum =  NULL;
+    double *yz_sum = NULL;
+    double *yy_sum = NULL;
+    double *zz_sum = NULL;
+    double *k_sum = NULL;   
+    double *ky_sum = NULL; 
+    double *kk_sum = NULL; 
+    double *kz_sum = NULL;
     
+ 
+ 
+ 
     trs = (double *) ALLOC(nnode, sizeof(double));
     cons = (double *) ALLOC(nnode, sizeof(double));
     trsums = (double *) ALLOC(nnode, sizeof(double));
@@ -41,7 +56,17 @@ honest_estimate_causalTree0(const int *dimx, int nnode, int nsplit, const int *d
     trsqrsums = (double *) ALLOC(nnode, sizeof(double));
     consqrsums = (double *) ALLOC(nnode, sizeof(double));
 
-    
+    /*add beta*/
+    y_sum= (double *) ALLOC(nnode, sizeof(double));
+    z_sum = (double *) ALLOC(nnode, sizeof(double));
+    yz_sum = (double *) ALLOC(nnode, sizeof(double));
+    yy_sum = (double *) ALLOC(nnode, sizeof(double));
+    zz_sum = (double *) ALLOC(nnode, sizeof(double));
+    k_sum = (double *) ALLOC(nnode, sizeof(double));
+    kk_sum = (double *) ALLOC(nnode, sizeof(double));
+    ky_sum = (double *) ALLOC(nnode, sizeof(double));
+    kz_sum = (double *) ALLOC(nnode, sizeof(double));
+ 
     // initialize:
     for (i = 0; i < nnode; i++) {
         trs[i] = 0.;
@@ -50,6 +75,19 @@ honest_estimate_causalTree0(const int *dimx, int nnode, int nsplit, const int *d
         consums[i] = 0.;
         trsqrsums[i] = 0.;
         consqrsums[i] = 0.;
+     
+     /* add */
+     y_sum[i] = 0.;
+     z_sum[i] = 0.;
+     yz_sum[i] = 0.;
+     yy_sum[i] = 0.;
+     zz_sum[i] = 0.;
+     k_sum[i] = 0.;
+     kk_sum[i] = 0.;
+     ky_sum[i] = 0.;
+     kz_sum[i] = 0.;
+     
+     
         n1[i] = 0;
         wt1[i] = 0.;
         if (nnum[i] > nnodemax) {
@@ -101,7 +139,23 @@ next:
         consums[npos] += wt2[i] * (1 - treatment2[i]) * y2[i];
         trsqrsums[npos] +=  wt2[i] * treatment2[i] * y2[i] * y2[i];
         consqrsums[npos] += wt2[i] * (1 - treatment2[i]) * y2[i] * y2[i];
-        
+     
+     /*add two beta*/
+        y_sum[npos] += wt2[i] * treatment2[i];
+        z_sum[npos] += wt2[i] * y2[i];
+        yz_sum[npos] += wt2[i] * y2[i] * treatment2[i];
+       
+        yy_sum[npos] += wt2[i] * treatment2[i] * treatment2[i];
+        zz_sum[npos] += wt2[i] * y2[i] * y2[i];
+        k_sum[npos]+= wt2[i] * treatments2[i];
+        kk_sum[npos]+= wt2[i] *treatments2[i] * treatments2[i];
+        ky_sum[npos]+= wt2[i] *treatments2[i] * treatment2[i];
+        kz_sum[npos]+= wt2[i] * y2[i] * treatments2[i];
+     
+     
+     
+     
+     
         /* walk down the tree */
         nspl = nodes[2][npos] - 1;      /* index of primary split */
         if (nspl >= 0) {        /* not a leaf node */
@@ -171,9 +225,23 @@ next:
         if (trs[origindx] != 0 && cons[origindx] != 0) {
             double tr_mean = trsums[origindx] * 1.0 / trs[origindx];
             double con_mean = consums[origindx] * 1.0 / cons[origindx];
-            yval1[origindx] = tr_mean - con_mean;
+            double tt_mean =  yy_sum[origindx]* 1.0 / wt1[origindx];
+           /* yval1[origindx] = tr_mean - con_mean;
             dev1[origindx] = trsqrsums[origindx] - trs[origindx] * tr_mean * tr_mean 
-                + consqrsums[origindx] - cons[origindx] * con_mean * con_mean;
+                + consqrsums[origindx] - cons[origindx] * con_mean * con_mean;*/
+         yval1[origiwt1dx] = ((wt1 [origiwt1dx]* yz_sum[origiwt1dx] *wt1[origiwt1dx]* yy_sum[origiwt1dx]- wt1[origiwt1dx]* yz_sum[origiwt1dx] * y_sum[origiwt1dx] * y_sum[origiwt1dx]-y_sum[origiwt1dx] * z_sum[origiwt1dx] *wt1[origiwt1dx] *kk_sum[origiwt1dx] + y_sum[origiwt1dx] * z_sum[origiwt1dx] * k_sum[origiwt1dx] * k_sum[origiwt1dx])
+              -(wt1[origiwt1dx] * kz_sum[origiwt1dx] * wt1[origiwt1dx] * ky_sum[origiwt1dx]-wt1[origiwt1dx] * kz_sum[origiwt1dx] * y_sum[origiwt1dx] *k_sum[origiwt1dx] - z_sum[origiwt1dx] * k_sum[origiwt1dx] * wt1[origiwt1dx] * ky_sum[origiwt1dx] + z_sum[origiwt1dx] * k_sum[origiwt1dx] * k_sum[origiwt1dx] * y_sum[origiwt1dx])) 
+            / ((wt1[origiwt1dx] * yy_sum[origiwt1dx] - y_sum[origiwt1dx] * y_sum[origiwt1dx])*(wt1[origiwt1dx] * kk_sum[origiwt1dx] - k_sum [origiwt1dx]* k_sum[origiwt1dx]));
+ 
+         yvals1[origiwt1dx]= ((wt1[origiwt1dx]  * kz_sum[origiwt1dx]  *wt1[origiwt1dx] * kk_sum[origiwt1dx] - wt1[origiwt1dx]  * kz_sum[origiwt1dx]  * y_sum[origiwt1dx]  * y_sum[origiwt1dx] - z_sum[origiwt1dx]  * k_sum[origiwt1dx]  *wt1[origiwt1dx]  *yy_sum[origiwt1dx]  + z_sum[origiwt1dx]  * k_sum[origiwt1dx]  * y_sum[origiwt1dx]  * y_sum[origiwt1dx])
+              -(wt1[origiwt1dx]  * yz_sum[origiwt1dx]   * wt1[origiwt1dx] * ky_sum[origiwt1dx] -wt1[origiwt1dx]  * yz_sum[origiwt1dx]  * y_sum[origiwt1dx]  *k_sum[origiwt1dx]  - z_sum[origiwt1dx]  * y_sum[origiwt1dx]  * wt1[origiwt1dx]  * ky_sum[origiwt1dx]  + z_sum[origiwt1dx]  * y_sum[origiwt1dx]  * y_sum[origiwt1dx]  * k_sum[origiwt1dx])) 
+            / ((wt1[origiwt1dx]  * yy_sum[origiwt1dx]  - y_sum[origiwt1dx]  * y_sum[origiwt1dx])*(wt1[origiwt1dx]  * kk_sum[origiwt1dx]  - k_sum[origiwt1dx]  * k_sum[origiwt1dx])); 
+
+         
+         
+         dev1[origindx] = yy_sum[origindx] -  tt_mean * tt_mean;
+         
+         
         } else {
             int parentdx = invertdx[i / 2];
             yval1[origindx] = yval1[parentdx];
@@ -189,11 +257,11 @@ SEXP
 honest_estimate_causalTree(SEXP dimx, SEXP nnode, 
                            SEXP nsplit, SEXP dimc, SEXP nnum, 
                            SEXP nodes2, 
-                           SEXP n1, SEXP wt1, SEXP dev1, SEXP yval1, 
+                           SEXP n1, SEXP wt1, SEXP dev1, SEXP yval1, SEXP yvals1, 
                            SEXP vnum, 
                            SEXP split2,
                            SEXP csplit2, SEXP usesur, 
-                           SEXP xdata2, SEXP wt2, SEXP treatment2, SEXP y2,
+                           SEXP xdata2, SEXP wt2, SEXP treatment2,SEXP treatments2, SEXP y2,
                            SEXP xmiss2)
 {
     int n = asInteger(dimx);
@@ -202,8 +270,8 @@ honest_estimate_causalTree(SEXP dimx, SEXP nnode,
             INTEGER(dimc), INTEGER(nnum), INTEGER(nodes2),
             INTEGER(vnum), REAL(split2), INTEGER(csplit2),
             INTEGER(usesur), 
-            INTEGER(n1), REAL(wt1), REAL(dev1), REAL(yval1), 
-            REAL(xdata2), REAL(wt2), REAL(treatment2), REAL(y2),
+            INTEGER(n1), REAL(wt1), REAL(dev1), REAL(yval1), REAL(yvals1), 
+            REAL(xdata2), REAL(wt2), REAL(treatment2), REAL(treatments2), REAL(y2),
             INTEGER(xmiss2), INTEGER(where));
     UNPROTECT(1);
     return where;
