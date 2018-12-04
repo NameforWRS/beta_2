@@ -8,7 +8,7 @@ void
 myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg, 
        int minsize, int *savesort, int split_Rule,
      int crossmeth, double split_alpha, double cv_alpha, int bucketnum, int bucketMax, double gamma)
-{Rprintf("myxval\n");
+{   Rprintf("myxval.c\n");
     int i, j, k, ii, jj;
     int last;
     int xgroup;
@@ -106,6 +106,7 @@ myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg,
         /*
          * partition the new tree
          */
+           Rprintf("partition the new tree\n");
         xtree = (pNode) CALLOC(1, nodesize);
         xtree->num_obs = k;
        
@@ -251,4 +252,5 @@ myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg,
         ct.which[i] = savew[i];
     Free(savew);
     Free(xtemp);
+ 
 }
