@@ -18,6 +18,7 @@ CTinit(int n, double *y[], int maxcat, char **error,
 {
         Rprintf("CTinit in CT.c start\n");
     if (who == 1 && maxcat > 0) {
+            Rprintf("CTinit in CT.c bw\n");
         graycode_init0(maxcat);
         countn = (int *) ALLOC(2 * maxcat, sizeof(int));
         tsplit = countn + maxcat;
