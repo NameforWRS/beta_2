@@ -13,7 +13,7 @@ static double *wtsqrsums, *trsqrsums;
 
 int
 CTinit(int n, double *y[], int maxcat, char **error,
-        int *size, int who, double *wt, double *treatment, 
+        int *size, int who, double *wt, double *treatment, double *treatments,
         int bucketnum, int bucketMax, double *train_to_est_ratio)
 {
     if (who == 1 && maxcat > 0) {
