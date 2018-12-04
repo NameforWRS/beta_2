@@ -178,7 +178,7 @@ myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg,
         /*
          * run the extra data down the new tree
          */
-      
+      Rprintf("run the extra data down the new tree\n");
         for(i = k; i < ct.n; i++) {
             j = ct.sorts[0][i];
             if (crossmeth == 1) {
@@ -252,5 +252,5 @@ myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg,
         ct.which[i] = savew[i];
     Free(savew);
     Free(xtemp);
- 
+ Rprintf("end myval.c\n");
 }
