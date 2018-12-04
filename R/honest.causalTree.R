@@ -47,9 +47,9 @@ honest.causalTree <- function(formula, data, weights, treatment, subset,
 	#if (sum(treatment %in% c(0,1)) != nobs) {
 	#	stop("The treatment status should be 1 or 0 only: 1 represent treated and 0 represent controlled.")
 	#}
-	if (sum(treatment) == 0 ) { #|| sum(treatment) == nobs
-		stop("The data only contains treated cases or controlled cases, please check 'treatment' again.") 
-	}
+	#if (sum(treatment) == 0 || sum(treatment) == nobs) { #
+	#	stop("The data only contains treated cases or controlled cases, please check 'treatment' again.") 
+	#}
 
 	# ---------------------------------------------------------------------------------------
 	# check the honest re-estimation data set:
@@ -80,12 +80,12 @@ honest.causalTree <- function(formula, data, weights, treatment, subset,
 	if (missing(est_treatment)) {
 	    stop("Note give the treatment status of honest estimation data set!\n ")
 	}
-	if (sum(est_treatment %in% c(0,1)) != est_nobs) {
-	    stop("The treatment status should be 1 or 0 only: 1 represent treated and 0 represent controlled.")
-	}
-	if (sum(est_treatment) == 0 || sum(est_treatment) == est_nobs) {
-	    stop("The data only contains treated cases or controlled cases, please check 'est_treatment' again.") 
-	}
+	#if (sum(est_treatment %in% c(0,1)) != est_nobs) {
+	#    stop("The treatment status should be 1 or 0 only: 1 represent treated and 0 represent controlled.")
+	#}
+	#if (sum(est_treatment) == 0 || sum(est_treatment) == est_nobs) {
+	 #   stop("The data only contains treated cases or controlled cases, please check 'est_treatment' again.") 
+	#}
 	
 
 	if (est_nvar != nvar) {
@@ -344,6 +344,7 @@ honest.causalTree <- function(formula, data, weights, treatment, subset,
 		storage.mode(X) <- "double"
 		storage.mode(wt) <- "double"
 		storage.mode(treatment) <- "double"
+	        #storage.mode(treatments) <- "double"
 		minsize <- as.integer(minsize) # minimum number of obs for treated and control cases in one leaf node
 
 		ctfit <- .Call(C_causalTree,
