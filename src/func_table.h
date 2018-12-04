@@ -26,7 +26,7 @@ extern void totD(int n, double *y[], double *x, int nclass, int edge, double *im
 extern double totDpred(double *y, double wt, double treatment, double *yhat, double p);
 
 extern int CTinit(int n, double *y[], int maxcat, char **error,
-           int *size, int who, double *wt, double *treatment, int bucketnum, 
+           int *size, int who, double *wt, double *treatment, double *treatments, int bucketnum, 
            int bucketMax, double *train_to_est_ratio);
 
 /* beta*/
