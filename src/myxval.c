@@ -106,15 +106,17 @@ myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg,
         /*
          * partition the new tree
          */
-           Rprintf("partition the new tree\n");
+           
         xtree = (pNode) CALLOC(1, nodesize);
         xtree->num_obs = k;
        
         
-        
+         Rprintf("start ct_init\n");
         (*ct_init) (k, ct.ytemp, maxcat, errmsg, &temp, 2, ct.wtemp, ct.trtemp, 
          bucketnum, bucketMax, &xtrain_to_est_ratio);
-        
+        Rprintf("end ct_init\n");
+           
+           
         if (split_Rule == 1) {
             //tot:
             (*ct_eval) (k, ct.ytemp, xtree->response_est, xtree->controlMean, xtree->treatMean,
