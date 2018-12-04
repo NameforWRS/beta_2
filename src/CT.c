@@ -16,7 +16,7 @@ CTinit(int n, double *y[], int maxcat, char **error,
         int *size, int who, double *wt, double *treatment, double *treatments,
         int bucketnum, int bucketMax, double *train_to_est_ratio)
 {
-        Rprintf("CTinit start\n");
+        Rprintf("CTinit in CT.c start\n");
     if (who == 1 && maxcat > 0) {
         graycode_init0(maxcat);
         countn = (int *) ALLOC(2 * maxcat, sizeof(int));
@@ -29,10 +29,12 @@ CTinit(int n, double *y[], int maxcat, char **error,
         trsums = wtsums + maxcat;
         wtsqrsums = trsums + maxcat;
         trsqrsums = wtsqrsums + maxcat;
+            
     }
     *size = 1;
     *train_to_est_ratio = n * 1.0 / ct.NumHonest;
     return 0;
+        Rprintf("CTinit in CT.c end\n");
 }
 
 void
