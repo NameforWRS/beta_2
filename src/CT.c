@@ -13,7 +13,7 @@ static double *wtsqrsums, *trsqrsums;
 
 int
 CTinit(int n, double *y[], int maxcat, char **error,
-        int *size, int who, double *wt, double *treatment, double *treatments,
+        int *size, int who, double *wt, double *treatment, 
         int bucketnum, int bucketMax, double *train_to_est_ratio)
 {
         Rprintf("CTinit in CT.c start\n");
