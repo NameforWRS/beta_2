@@ -19,12 +19,15 @@ causalTree <- function(formula, data, weights, treatment, treatments, subset,
 	temp <- Call[c(1L, indx)]      
 	temp$na.action <- na.action  
 	temp[[1L]] <- quote(stats::model.frame) 
-	#names(treatment) <- rownames(data)
-	m <- eval.parent(temp)
-	#treatment <- treatment[(rownames(m))]
+						       
+	names(treatment) <- rownames(data)
 	#Add treantment
-	#names(treatments) <- rownames(data)
-	#treatments <- treatments[(rownames(m))]
+	names(treatments) <- rownames(data)
+	
+	m <- eval.parent(temp)
+	treatment <- treatment[(rownames(m))]
+	#add
+	treatments <- treatments[(rownames(m))]
 	
 	
 	Terms <- attr(m, "terms")
