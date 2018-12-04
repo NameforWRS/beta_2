@@ -229,14 +229,15 @@ next:
            /* yval1[origindx] = tr_mean - con_mean;
             dev1[origindx] = trsqrsums[origindx] - trs[origindx] * tr_mean * tr_mean 
                 + consqrsums[origindx] - cons[origindx] * con_mean * con_mean;*/
-         yval1[origiwtdx] = ((wt1[origiwtdx]* yz_sum[origiwtdx] *wt1[origiwtdx]* yy_sum[origiwtdx]- wt1[origiwtdx]* yz_sum[origiwtdx] * y_sum[origiwtdx] * y_sum[origiwtdx]-y_sum[origiwtdx] * z_sum[origiwtdx] *wt1[origiwtdx] *kk_sum[origiwtdx] + y_sum[origiwtdx] * z_sum[origiwtdx] * k_sum[origiwtdx] * k_sum[origiwtdx])
-              -(wt1[origiwtdx] * kz_sum[origiwtdx] * wt1[origiwtdx] * ky_sum[origiwtdx]-wt1[origiwtdx] * kz_sum[origiwtdx] * y_sum[origiwtdx] *k_sum[origiwtdx] - z_sum[origiwtdx] * k_sum[origiwtdx] * wt1[origiwtdx] * ky_sum[origiwtdx] + z_sum[origiwtdx] * k_sum[origiwtdx] * k_sum[origiwtdx] * y_sum[origiwtdx])) 
-            / ((wt1[origiwtdx] * yy_sum[origiwtdx] - y_sum[origiwtdx] * y_sum[origiwtdx])*(wt1[origiwtdx] * kk_sum[origiwtdx] - k_sum [origiwtdx]* k_sum[origiwtdx]));
+         
+         yval1[origindx]= ((wt1 [origiwtdx]* yz_sum[origindx]*wt1[origiwtdx]* yy_sum[origiwtdx]- wt1[origiwtdx]* yz_sum[origindx]* y_sum[origindx]* y_sum[origiwtdx]-y_sum[origindx]* z_sum[origindx]*wt1[origindx]*kk_sum[origindx]+ y_sum[origindx]* z_sum[origindx]* k_sum[origindx]* k_sum[origiwtdx])
+              -(wt1[origindx]* kz_sum[origindx]* wt1[origindx]* ky_sum[origiwtdx]-wt1[origindx]* kz_sum[origindx]* y_sum[origindx]*k_sum[origindx]- z_sum[origindx]* k_sum[origindx]* wt1[origindx]* ky_sum[origindx]+ z_sum[origindx]* k_sum[origindx]* k_sum[origindx]* y_sum[origiwtdx])) 
+            / ((wt1[origindx]* yy_sum[origindx]- y_sum[origindx]* y_sum[origiwtdx])*(wt1[origindx]* kk_sum[origindx]- k_sum [origiwtdx]* k_sum[origiwtdx]));
 
 
-       yvals1[origiwtdx] = ((wt1[origiwtdx]  * kz_sum[origiwtdx]  *wt1[origiwtdx] * kk_sum[origiwtdx] - wt1[origiwtdx]  * kz_sum[origiwtdx]  * y_sum[origiwtdx]  * y_sum[origiwtdx] - z_sum[origiwtdx]  * k_sum[origiwtdx]  *wt1[origiwtdx]  *yy_sum[origiwtdx]  + z_sum[origiwtdx]  * k_sum[origiwtdx]  * y_sum[origiwtdx]  * y_sum[origiwtdx])
-              -(wt1[origiwtdx]  * yz_sum[origiwtdx]   * wt1[origiwtdx] * ky_sum[origiwtdx] -wt1[origiwtdx]  * yz_sum[origiwtdx]  * y_sum[origiwtdx]  * k_sum[origiwtdx]  - z_sum[origiwtdx] * y_sum[origiwtdx]  * wt1[origiwtdx]  * ky_sum[origiwtdx]  + z_sum[origiwtdx]  * y_sum[origiwtdx]  * y_sum[origiwtdx]  * k_sum[origiwtdx])) 
-            / ((wt1[origiwtdx]  * yy_sum[origiwtdx]  - y_sum[origiwtdx]  * y_sum[origiwtdx])*(wt1[origiwtdx]  * kk_sum[origiwtdx]  - k_sum[origiwtdx]  * k_sum[origiwtdx])); 
+yvals1[origindx]= ((wt1[origindx] * kz_sum[origindx] *wt1[origindx]* kk_sum[origindx]- wt1[origindx] * kz_sum[origindx] * y_sum[origindx] * y_sum[origindx]- z_sum[origindx] * k_sum[origindx] *wt1[origindx] *yy_sum[origindx] + z_sum[origindx] * k_sum[origindx] * y_sum[origindx] * y_sum[origiwtdx])
+              -(wt1[origindx] * yz_sum[origindx]  * wt1[origindx]* ky_sum[origindx]-wt1[origindx] * yz_sum[origindx] * y_sum[origindx] *k_sum[origindx] - z_sum[origindx] * y_sum[origindx] * wt1[origindx] * ky_sum[origindx] + z_sum[origindx] * y_sum[origindx] * y_sum[origindx] * k_sum[origiwtdx])) 
+            / ((wt1[origindx] * yy_sum[origindx] - y_sum[origindx] * y_sum[origiwtdx])*(wt1[origindx] * kk_sum[origindx] - k_sum[origindx] * k_sum[origiwtdx])); 
 
 
          
