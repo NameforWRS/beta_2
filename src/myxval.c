@@ -121,7 +121,7 @@ myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg,
             //tot:
             (*ct_eval) (k, ct.ytemp, xtree->response_est, xtree->controlMean, xtree->treatMean,
              &(xtree->risk), ct.wtemp, ct.trtemp, ct.max_y, ct.propensity);
-        } else if (split_Rule == 2) {
+        } else if (split_Rule == 2) { Rprintf("call ct.c from myval\n");
             // ct:
             (*ct_eval) (k, ct.ytemp, xtree->response_est, xtree->controlMean, xtree->treatMean,
              &(xtree->risk), ct.wtemp, ct.trtemp, ct.max_y, split_alpha, xtrain_to_est_ratio);
