@@ -292,7 +292,7 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     }
     
     train_to_est_ratio = 100;
-    i = (*ct_init) (n, ct.ydata, maxcat, &errmsg, &ct.num_resp, 1, wt, treatment,
+    i = (*ct_init) (n, ct.ydata, maxcat, &errmsg, &ct.num_resp, 1, wt, treatment, treatments,
          bucketnum, bucketMax, &train_to_est_ratio);
     
 
