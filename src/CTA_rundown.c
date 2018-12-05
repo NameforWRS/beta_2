@@ -72,6 +72,7 @@ CTA_rundown(pNode tree, int obs, double *cp, double *xpred, double *xtemp, int k
             }
         }
         Rprintf("before calculate in CTA_rundown.c\n");
+	Rprintf("The trs in function CTA_R in CTA_R.c is %d\n", trs);  
         //calculate tr_mean and con_mean
         if (trs == 0) {
             // want to trace back to tree->parent for tr_mean;
@@ -80,14 +81,14 @@ CTA_rundown(pNode tree, int obs, double *cp, double *xpred, double *xtemp, int k
             tr_mean = trsums / trs;
             tree->xtreatMean[0] = tr_mean;
         }
-        
+        Rprintf("The cons in function CTA_R in CTA_R.c is %d\n", cons);  
         if (cons == 0) {
             con_mean = tree->parent->xcontrolMean[0];
         } else {
             con_mean = consums / cons;
             tree->xcontrolMean[0] = con_mean;
         }
-        
+        Rprintf("pre-before CT_xeval in CTA_rundown.c\n");
         double tree_tr_mean = tree->treatMean[0];
         double tree_con_mean = tree->controlMean[0];
         Rprintf("before CT_xeval in CTA_rundown.c\n");
