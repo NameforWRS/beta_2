@@ -292,9 +292,10 @@ causalTree(SEXP ncat2, SEXP split_Rule2, SEXP bucketnum2, SEXP bucketMax2, SEXP 
     }
     
     train_to_est_ratio = 100;
+            Rprintf("ct_init in causalTree.c is %d\n");  
     i = (*ct_init) (n, ct.ydata, maxcat, &errmsg, &ct.num_resp, 1, wt, treatment, treatments,
          bucketnum, bucketMax, &train_to_est_ratio);
-    
+     Rprintf("end ct_init in causalTree.c is %d\n");  
 
     
     if (i > 0)
