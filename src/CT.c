@@ -16,7 +16,8 @@ CTinit(int n, double *y[], int maxcat, char **error,
         int *size, int who, double *wt, double *treatment, 
         int bucketnum, int bucketMax, double *train_to_est_ratio)
 { Rprintf("CTinit in CT.c bw\n");
-       
+        Rprintf("The who in function CTinit in CT.c is %d\n", who);  
+        Rprintf("The maxcat in function CTinit in CT.c is %d\n", maxcat); 
     if (who == 1 && maxcat > 0) {
         
         graycode_init0(maxcat);
