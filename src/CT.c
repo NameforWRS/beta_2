@@ -105,7 +105,10 @@ CTss(int n, double *y[], double *value,  double *con_mean, double *tr_mean,
     var_beta = beta1_sqr_sum / n - beta_1 * beta_1 / (n * n) + beta2_sqr_sum / n - beta_2 * beta_2 / (n * n);
     
     *tr_mean = temp1 / ttreat;
+ Rprintf("The twt in function CTinit in CT.c is %d\n", twt);  
+ Rprintf("The ttreat in function CTinit in CT.c is %d\n", ttreat);  
     *con_mean = temp0 / (twt - ttreat);
+    Rprintf("The con_mean in function CTinit in CT.c is %d\n", con_mean);  
     *value = effect;
     //*risk = 4 * twt * max_y * max_y - alpha * twt * effect * effect + 
     //(1 - alpha) * (1 + train_to_est_ratio) * twt * (tr_var /ttreat  + con_var / (twt - ttreat));
