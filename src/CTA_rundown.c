@@ -81,7 +81,9 @@ CTA_rundown(pNode tree, int obs, double *cp, double *xpred, double *xtemp, int k
             tr_mean = trsums / trs;
             tree->xtreatMean[0] = tr_mean;
         }
-        Rprintf("The cons in function CTA_R in CTA_R.c is %d\n", cons);  
+        
+	Rprintf("The tree->parent->xcontrolMean[0] in function CTA_R in CTA_R.c is %d\n", tree->parent->xcontrolMean[0]);
+	Rprintf("The cons in function CTA_R in CTA_R.c is %d\n", cons);  
         if (cons == 0) {
             con_mean = tree->parent->xcontrolMean[0];
         } else {
