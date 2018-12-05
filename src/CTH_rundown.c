@@ -73,7 +73,7 @@ CTH_rundown(pNode tree, int obs, double *cp, double *xpred, double *xtemp, int k
         }
 
         if (trs == 0) {
-            tr_mean = &tree->parent->xtreatMean;
+            tr_mean = tree->parent->xtreatMean[0];
             tr_var = 0;
         } else {
             tr_mean = trsums / trs;
@@ -82,7 +82,7 @@ CTH_rundown(pNode tree, int obs, double *cp, double *xpred, double *xtemp, int k
         }
         
         if (cons == 0) {
-            con_mean = &tree->parent->xcontrolMean;
+            con_mean = tree->parent->xcontrolMean[0];
             con_var = 0;
         } else {
             con_mean = consums / cons;
