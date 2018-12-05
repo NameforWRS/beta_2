@@ -218,6 +218,7 @@ myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg,
               // user - dishonest (set as CT - dishonest temporarily)
               policyA_rundown(xtree, j, cp, xpred, xtemp, k, cv_alpha, gamma);
             }
+            Rprintf("has finished the loop.c\n");
 
 
 #if DEBUG > 1
