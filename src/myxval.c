@@ -186,7 +186,7 @@ myxval(int n_xval, CpTable cptable_head, int *x_grp, int maxcat, char **errmsg,
            Rprintf("The k in function maxval in maxval.c is %d\n", k);  
            Rprintf("The ct.n in function maxval in maxval.c is %d\n", ct.n);  
            
-           Rprintf("The xtree->controlMean in function maxval in maxval.c is %d\n", xtree->controlMean);  
+           Rprintf("The xtree->parent->controlMean in function maxval in maxval.c is %d\n", xtree->parent->controlMean);  
         for(i = k; i < ct.n; i++) {
             j = ct.sorts[0][i];
             if (crossmeth == 1) {
