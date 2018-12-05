@@ -13,6 +13,7 @@
 void
 CTA_rundown(pNode tree, int obs, double *cp, double *xpred, double *xtemp, int k, double alpha)
 {
+    Rprintf("CTA_rundown in CTA_rundown.c\n");
     int i, obs2 = (obs < 0) ? -(1 + obs) : obs;
     int my_leaf_id;
     pNode otree =  tree;
@@ -31,6 +32,7 @@ CTA_rundown(pNode tree, int obs, double *cp, double *xpred, double *xtemp, int k
      *   not have collapsed, but this split will have, so this is my
      *   predictor.
      */
+    Rprintf("The ct.num_unique_cp in function CTA_R in CTA_R.c is %d\n", ct.num_unique_cp);  
     for (i = 0; i < ct.num_unique_cp; i++) {
         cons = 0.;
         trs = 0.;
@@ -69,7 +71,7 @@ CTA_rundown(pNode tree, int obs, double *cp, double *xpred, double *xtemp, int k
                 }
             }
         }
-        
+        Rprintf("before calculate in CTA_rundown.c\n");
         //calculate tr_mean and con_mean
         if (trs == 0) {
             // want to trace back to tree->parent for tr_mean;
